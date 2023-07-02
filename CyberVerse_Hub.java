@@ -81,21 +81,27 @@ public class CyberVerse_Hub
             System.out.println(pay);
         }
         
-        int Payment = sc.nextInt();
-        
-        
+        int payment = sc.nextInt();
 
-        switch(Payment)
-        {
+        switch (payment) {
             case 1:
-                System.out.println("UPI LINK");
-            break;
+                displayClickableLink("Click this link for UPI Payment:", "https://www.example.com/upi-payment");
+                break;
             case 2:
-                System.out.println("Do you want receipt");
-            break;
+                System.out.println("Do you want a receipt?");
+                break;
         }
-        System.out.println("Thank you for Shooping at CyberVerse_Hub");
 
-    sc.close();
+        System.out.println();
+        System.out.println("Thank you for shopping at CyberVerse_Hub");
+
+        sc.close();
+    }
+
+    public static void displayClickableLink(String text, String url) {
+        String clickableLink = "\u001B]8;;" + url + "\u001B\\" 
+                + text 
+                + "\u001B]8;;\u001B\\";
+        System.out.println(clickableLink);
     }
 }
