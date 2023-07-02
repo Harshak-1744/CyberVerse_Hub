@@ -70,6 +70,27 @@ public class CyberVerse_Hub
                 System.out.println("Thank you for Purchasing" + " " + name.get(4));
                 System.out.println("Your Bill is $30");
         }
+        
+        System.out.println("Choose the payment method :-");
+        
+        int Payment = sc.nextInt();
+        
+        String [] arr = {"1. UPI, 2. CARD"};
+
+        for(String pay : arr)
+        {
+            System.out.println(pay);
+        }
+
+        switch(Payment)
+        {
+            case 1:
+                System.out.println("UPI LINK");
+            break;
+            case 2:
+                System.out.println("Do you want receipt");
+            break;
+        }
         System.out.println("Thank you for Shooping at CyberVerse_Hub");
 
     sc.close();
