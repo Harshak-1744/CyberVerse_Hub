@@ -71,16 +71,19 @@ public class CyberVerse_Hub
                 System.out.println("Your Bill is $30");
         }
         
-        System.out.println("Choose the payment method :-");
-        
-        int Payment = sc.nextInt();
-        
-        String [] arr = {"1. UPI, 2. CARD"};
 
+        System.out.println("Choose the payment method :-");
+
+        String [] arr = {"1. UPI, 2. CARD"};
+        
         for(String pay : arr)
         {
             System.out.println(pay);
         }
+        
+        int Payment = sc.nextInt();
+        
+        
 
         switch(Payment)
         {
