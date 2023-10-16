@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class CyberVerse_Hub {
-    
+
     static class Game {
         String name;
         double price;
@@ -24,8 +24,8 @@ public class CyberVerse_Hub {
         System.out.println("Thank you for purchasing " + games.get(choice-1).name);
         System.out.println("Your Bill is $" + games.get(choice-1).price);
 
-        displayPaymentMethods();
-        
+        displayPaymentMethods(games.get(choice-1));
+
         System.out.println("Thank you for shopping at CyberVerse_Hub");
     }
 
@@ -59,7 +59,7 @@ public class CyberVerse_Hub {
         }
     }
 
-    private static void displayPaymentMethods() {
+    private static void displayPaymentMethods(Game purchasedGame) {
         System.out.println("Choose the payment method :-");
         String[] methods = { "UPI", "CARD" };
 
@@ -69,14 +69,16 @@ public class CyberVerse_Hub {
 
         Scanner sc = new Scanner(System.in);
         int choice;
+        String paymentMethod = "";
         while (true) {
             try {
                 choice = sc.nextInt();
                 if (choice == 1) {
+                    paymentMethod = "UPI";
                     displayClickableLink("Click this link for UPI Payment:", "https://www.example.com/upi-payment");
                     break;
                 } else if (choice == 2) {
-                    System.out.println("Do you want a receipt?");
+                    paymentMethod = "CARD";
                     break;
                 } else {
                     throw new Exception();
@@ -85,12 +87,33 @@ public class CyberVerse_Hub {
                 System.out.println("Invalid choice. Please choose a valid payment method.");
             }
         }
+        askForReceipt(sc, purchasedGame, paymentMethod);
         sc.close();
     }
 
+    private static void askForReceipt(Scanner sc, Game purchasedGame, String paymentMethod) {
+        System.out.println("Do you want a receipt? (yes/no)");
+        String receiptChoice = sc.next();
+        if (receiptChoice.equalsIgnoreCase("yes")) {
+            generateReceipt(purchasedGame, paymentMethod);
+        } else if (receiptChoice.equalsIgnoreCase("no")) {
+            System.out.println("Receipt declined.");
+        } else {
+            System.out.println("Invalid choice. No receipt generated.");
+        }
+    }
+
+    private static void generateReceipt(Game game, String paymentMethod) {
+        System.out.println("---------- CyberVerse_Hub Receipt ----------");
+        System.out.println("Game Purchased: " + game.name);
+        System.out.println("Price: $" + game.price);
+        System.out.println("Payment Method: " + paymentMethod);
+        System.out.println("--------------------------------------------");
+    }
+
     public static void displayClickableLink(String text, String url) {
-        String clickableLink = "\u001B]8;;" + url + "\u001B\\" 
-                + text 
+        String clickableLink = "\u001B]8;;" + url + "\u001B\\"
+                + text
                 + "\u001B]8;;\u001B\\";
         System.out.println(clickableLink);
     }
